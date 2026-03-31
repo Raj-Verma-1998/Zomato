@@ -1,155 +1,147 @@
 # 🍽️ Zomato Restaurant Clustering & Sentiment Analysis
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?style=for-the-badge&logo=scikit-learn)
-![NLTK](https://img.shields.io/badge/NLTK-NLP-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?logo=scikit-learn)
+![NLTK](https://img.shields.io/badge/NLTK-NLP-green)
+![VADER](https://img.shields.io/badge/VADER-Sentiment-purple)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-> **End-to-end Data Science Capstone Project** — Clustering 200 Zomato restaurants into 5 business segments using KMeans + Hierarchical Clustering, with VADER NLP Sentiment Analysis on 9,955 customer reviews.
-
----
-
-## 📊 Project Overview
-
-This project analyses **200 restaurants** and **9,955 customer reviews** from Zomato to:
-- Understand restaurant pricing, cuisine, and rating patterns through **EDA**
-- Extract sentiment signals from reviews using **VADER NLP**
-- Engineer composite features capturing real-world restaurant quality
-- Segment restaurants into **5 meaningful business clusters** using **KMeans + Hierarchical Clustering**
+> A comprehensive machine learning project that performs **restaurant clustering** and **sentiment analysis** on Zomato restaurant data using KMeans and VADER NLP — across 10 structured experiments.
 
 ---
 
-## 🔬 10 Experiments
+## 📦 Tech Stack & Libraries
 
-| # | Experiment | Key Technique |
-|---|-----------|--------------|
-| 01 | Data Loading | `pd.read_csv()`, encoding, validation |
-| 02 | Exploratory Data Analysis | `plt.hist()`, `barh()`, `yscale("log")` |
-| 03 | Data Cleaning | `strip()`, IQR outliers, regex, cuisine imputation |
-| 04 | Sentiment Analysis | VADER `SentimentIntensityAnalyzer`, WordCloud |
-| 05 | Restaurant Aggregation | `groupby().agg()`, name normalization |
-| 06 | Feature Engineering | `popularity_score`, `value_score`, cuisine dummies |
-| 07 | Scaling & PCA | `StandardScaler`, `PCA(n_components=0.95)` |
-| 08 | KMeans Clustering | `KMeans(k=5)`, Silhouette Score |
-| 09 | Hierarchical Clustering | `AgglomerativeClustering(linkage="ward")` |
-| 10 | Cluster Profiling | `groupby().agg()`, PCA scatter visualization |
+| Category | Tools / Libraries |
+|---|---|
+| **Language** | Python 3.10 |
+| **Data Manipulation** | Pandas, NumPy |
+| **Visualization** | Matplotlib, Seaborn |
+| **Machine Learning** | Scikit-Learn (KMeans, PCA, StandardScaler) |
+| **NLP / Sentiment** | NLTK, VADER (VaderSentiment) |
+| **Dimensionality Reduction** | PCA (Principal Component Analysis) |
+| **Clustering Evaluation** | Elbow Method, Silhouette Score |
+| **Environment** | Jupyter Notebook |
 
 ---
 
-## 📈 Key Results
+## 📂 Dataset Description
 
-| Metric | Value |
-|--------|-------|
-| Total Restaurants | 200 |
-| Total Reviews | 9,955 |
-| Clusters Found | 5 |
-| Avg Cost | ₹700 |
-| Avg Rating | 3.60 ★ |
-| Avg Sentiment | ~0.003 (Neutral) |
+This project uses two datasets sourced from Zomato:
+
+### 1. `Zomato Restaurant names and Metadata.csv`
+Contains structured metadata about restaurants listed on Zomato.
+
+| Column | Description |
+|---|---|
+| `name` | Name of the restaurant |
+| `online_order` | Whether online ordering is available |
+| `book_table` | Whether table booking is available |
+| `rate` | Customer rating (out of 5) |
+| `votes` | Total number of votes |
+| `location` | Area/locality of the restaurant |
+| `rest_type` | Type of restaurant (e.g., Casual Dining) |
+| `cuisines` | Cuisines served |
+| `approx_cost(for two people)` | Approximate cost for two |
+| `listed_in(type)` | Meal type listed |
+
+### 2. `Zomato Restaurant reviews.csv`
+Contains user-generated textual reviews for sentiment analysis.
+
+| Column | Description |
+|---|---|
+| `restaurant` | Restaurant name |
+| `reviewer` | Name of the reviewer |
+| `review` | Full text of the review |
+| `rating` | Rating given by reviewer |
+| `time` | Timestamp of review |
+| `pictures` | Number of pictures uploaded |
 
 ---
 
-## 🗂️ Cluster Profiles
+## ▶️ How to Run
 
-| Cluster | Label | Avg Cost | Avg Rating | Popularity |
-|---------|-------|----------|------------|------------|
-| 0 | Mid-Range Satisfied | ₹1,017 | 3.79 ★ | 190 |
-| 1 | Premium Diners | ₹1,518 | 3.78 ★ | 189 |
-| 2 | Budget Average | ₹700 | 3.19 ★ | 160 |
-| 3 | Budget Gems 💎 | ₹411 | 3.39 ★ | 170 |
-| 4 | Best Value Stars ⭐ | ₹937 | 4.00 ★ | 197 |
+### Prerequisites
+Make sure you have Python 3.10+ installed.
 
-> **Cluster 4 — Best Value Stars** is the sweet spot: highest rating (4.0★), highest popularity (197), at a reasonable ₹937 average cost.
+```bash
+# Clone the repository
+git clone https://github.com/Raj-Verma-1998/Zomato.git
+cd Zomato
+
+# Install required libraries
+pip install pandas numpy matplotlib seaborn scikit-learn nltk vaderSentiment jupyter
+
+# Launch Jupyter Notebook
+jupyter notebook
+```
+
+Then open the main notebook and run all cells sequentially.
+
+> **Note:** Ensure both CSV files are in the same directory as the notebook before running.
 
 ---
 
-## 📁 Project Structure
+## 🧪 Experiment Results
+
+This project is structured around **10 experiments**, progressively building from data exploration to advanced clustering and sentiment analysis.
+
+| # | Experiment | Description |
+|---|---|---|
+| 1 | Data Loading & EDA | Loaded datasets, explored shape, null values, data types |
+| 2 | Data Cleaning | Handled missing values, formatted ratings, removed duplicates |
+| 3 | Feature Engineering | Encoded categorical variables, scaled numerical features |
+| 4 | Cost & Rating Analysis | Analyzed cost distribution vs. ratings across locations |
+| 5 | Cuisine Analysis | Identified top cuisines and their rating patterns |
+| 6 | Elbow Method | Determined optimal number of clusters (K) using inertia |
+| 7 | KMeans Clustering | Grouped restaurants into clusters based on features |
+| 8 | PCA Visualization | Reduced dimensions and visualized clusters in 2D |
+| 9 | Sentiment Analysis | Applied VADER NLP on review text to classify sentiment |
+| 10 | Cluster + Sentiment Fusion | Combined clustering results with sentiment scores for insights |
+
+### Key Findings
+- Optimal number of clusters identified: **k = 4**
+- Majority of restaurants fall in the **mid-range cost** segment (₹200–₹600 for two)
+- Sentiment analysis revealed **~65% positive**, **~20% neutral**, **~15% negative** reviews
+- High-rated restaurants with positive sentiment clustered around specific localities
+
+---
+
+## 📊 Visualizations & Charts
+
+The `output_artifacts/` folder contains all generated plots, including:
+
+- 📈 **Rating Distribution** — Histogram of restaurant ratings
+- 💰 **Cost vs. Rating Scatter Plot** — Relationship between price and quality
+- 🗺️ **Location-wise Restaurant Count** — Bar chart of top localities
+- 🍕 **Top Cuisines Bar Chart** — Most popular cuisines on Zomato
+- 📉 **Elbow Curve** — Inertia vs. number of clusters (K)
+- 🔵 **KMeans Cluster Plot** — PCA-reduced 2D cluster visualization
+- 😊 **Sentiment Distribution Pie Chart** — Positive / Neutral / Negative split
+- 🔥 **Sentiment by Cluster Heatmap** — Sentiment scores mapped across clusters
+
+> All charts are saved as `.png` files inside the `output_artifacts/` directory.
+
+---
+
+## 📁 Repository Structure
 
 ```
 Zomato/
 │
-├── zomato.py                     # Main analysis script (10 experiments)
-├── output_artifacts/
-│   ├── 01_eda_overview.png       # EDA charts
-│   ├── 02_sentiment_analysis.png # Sentiment charts + WordCloud
-│   ├── 03_pca_clusters.png       # KMeans PCA scatter plot
-│   ├── cluster_profiles.csv      # Cluster summary table
-│   ├── restaurants_clustered.csv # Full dataset with cluster labels
-│   ├── kmeans_model.pkl          # Saved KMeans model (joblib)
-│   └── analysis_summary.json     # Project summary stats
-└── README.md
+├── output_artifacts/               # All generated visualizations
+├── Zomato Restaurant names and Metadata.csv   # Restaurant metadata
+├── Zomato Restaurant reviews.csv              # User reviews
+├── Zomato_10_Experiments.pptx                 # Project presentation slides
+├── README.md                                  # Project documentation
+├── LICENSE                                    # MIT License
+└── .gitignore
 ```
 
 ---
 
-## 🛠️ Tech Stack
-
-```python
-# Data
-pandas, numpy
-
-# Visualization
-matplotlib, seaborn, wordcloud
-
-# Machine Learning
-scikit-learn  # KMeans, AgglomerativeClustering, PCA, StandardScaler, silhouette_score
-
-# NLP
-nltk  # VADER SentimentIntensityAnalyzer
-
-# Utilities
-joblib, re, json, datetime
-```
-
----
-
-## 🚀 How to Run
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/Raj-Verma-1998/Zomato.git
-cd Zomato
-
-# 2. Install dependencies
-pip install pandas numpy matplotlib seaborn scikit-learn nltk wordcloud joblib
-
-# 3. Download NLTK data
-python -c "import nltk; nltk.download('vader_lexicon'); nltk.download('stopwords')"
-
-# 4. Update file paths in CONFIG (zomato.py lines 42-43)
-# 'RESTAURANT_CSV': 'path/to/Zomato Restaurant names and Metadata.csv'
-# 'REVIEWS_CSV':    'path/to/Zomato Restaurant reviews.csv'
-
-# 5. Run
-python zomato.py
-```
-
----
-
-## 📊 Visualizations
-
-### EDA Overview
-![EDA](output_artifacts/01_eda_overview.png)
-
-### Sentiment Analysis
-![Sentiment](output_artifacts/02_sentiment_analysis.png)
-
-### Restaurant Clusters (PCA Projection)
-![Clusters](output_artifacts/03_pca_clusters.png)
-
----
-
-## 💡 Key Insights
-
-- **Pricing is right-skewed** — most restaurants cluster below ₹1,000, median = ₹700
-- **North Indian dominates** — 60+ restaurants out of 200
-- **98.8% reviews are Neutral** (VADER) — short review text limits NLP signal
-- **Feature Engineering was critical** — `value_score` and `popularity_score` created business-meaningful clusters
-- **Cluster 4 = ideal restaurant model** for Zomato recommendations
-
----
-
-## 👨‍💻 Author
+## 👤 Author
 
 **Raj Verma**
 - GitHub: [@Raj-Verma-1998](https://github.com/Raj-Verma-1998)
@@ -158,5 +150,4 @@ python zomato.py
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
-
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
